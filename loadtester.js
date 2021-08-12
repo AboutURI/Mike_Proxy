@@ -2,21 +2,34 @@ import http from 'k6/http';
 import { check, sleep } from 'k6';
 import { jUnit, textSummary } from 'https://jslib.k6.io/k6-summary/0.0.1/index.js';
 
+// export let options = {
+//   stages: [
+//     // { duration: '30s', target: 1250 },
+//     { duration: '60s', target: 2000 }
+//     // { duration: '30s', target: 4600 },
+//     // { duration: '30s', target: 4900 },
+//     // { duration: '30s', target: 5200 },
+//   ],
+// };
+
 export let options = {
-  stages: [
-    { duration: '30s', target: 1250 }
-    // { duration: '30s', target: 4300 },
-    // { duration: '30s', target: 4600 },
-    // { duration: '30s', target: 4900 },
-    // { duration: '30s', target: 5200 },
-  ],
+  // discardResponseBodies: true,
+  scenarios: {
+    contacts: {
+      executor: 'constant-arrival-rate',
+      rate: 100, // 200 RPS, since timeUnit is the default 1s
+      duration: '1m',
+      preAllocatedVUs: 100,
+      maxVUs: 1000,
+    },
+  },
 };
 
 export default function () {
   // let res = http.get('http://localhost:6012/');
   // let res = http.get('http://admin:password@localhost:5984/sidebar/0')
-  // let res = http.get('http://ec2-18-144-63-186.us-west-1.compute.amazonaws.com:6012')
-  let res = http.get('http://ec2-13-57-225-97.us-west-1.compute.amazonaws.com:3004/sidebar?courseId=4736376')
+  let res = http.get('http://ec2-18-144-63-186.us-west-1.compute.amazonaws.com:6012/sidebar?courseId=9456345')
+  // let res = http.get('http://ec2-13-57-225-97.us-west-1.compute.amazonaws.com:3004/sidebar?courseId=9456345')
   // console.log(JSON.stringify(res.body));
   check(res, { 'status was 200': (r) => r.status == 200 });
   sleep(1);

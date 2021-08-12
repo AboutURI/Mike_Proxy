@@ -7,30 +7,31 @@ var httpProxy = require('http-proxy');
 var apiProxy = httpProxy.createProxyServer();
 require('newrelic');
 
-const serverOne = 'http://ec2-13-57-225-97.us-west-1.compute.amazonaws.com:3004/'
+const serverOne = 'http://ec2-13-57-225-97.us-west-1.compute.amazonaws.com:3004/';
+const nginx = 'http://ec2-54-219-150-232.us-west-1.compute.amazonaws.com/';
 
 app.use(shrinkRay());
 app.use(express.static(path.join(__dirname, '..', 'public')));
 app.use(cors());
 
-app.use('/course', (req, res) => {
-  // console.log('In course route')
-  res.sendFile('index.html', {root: 'public'});
-});
+// app.use('/course', (req, res) => {
+//   // console.log('In course route')
+//   res.sendFile('index.html', {root: 'public'});
+// });
 
 app.all("/sidebar", function(req, res) {
   console.log('redirecting to Server1');
-  apiProxy.web(req, res, {target: serverOne, changeOrigin: true});
+  apiProxy.web(req, res, {target: nginx, changeOrigin: true});
 });
 
 app.all("/price", function(req, res) {
   console.log('redirecting to Server1');
-  apiProxy.web(req, res, {target: serverOne, changeOrigin: true});
+  apiProxy.web(req, res, {target: nginx, changeOrigin: true});
 });
 
 app.all("/previewVideo", function(req, res) {
   console.log('redirecting to Server1');
-  apiProxy.web(req, res, {target: serverOne, changeOrigin: true});
+  apiProxy.web(req, res, {target: nginx, changeOrigin: true});
 });
 
 // app.use('/', (req, res) => {

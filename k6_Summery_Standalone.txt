@@ -1,0 +1,43 @@
+Michaels-MacBook-Pro-2:udemy-proxy-carinij michaelgallien$ k6 run loadtester.js 
+
+          /\      |‾‾| /‾‾/   /‾‾/   
+     /\  /  \     |  |/  /   /  /    
+    /  \/    \    |     (   /   ‾‾\  
+   /          \   |  |\  \ |  (‾)  | 
+  / __________ \  |__| \__\ \_____/ .io
+
+  execution: local
+     script: loadtester.js
+     output: -
+
+  scenarios: (100.00%) 1 scenario, 1000 max VUs, 1m30s max duration (incl. graceful stop):
+           * contacts: 100.00 iterations/s for 1m0s (maxVUs: 100-1000, gracefulStop: 30s)
+
+
+running (1m01.0s), 0000/0193 VUs, 5908 complete and 0 interrupted iterations
+contacts ✓ [======================================] 0000/0193 VUs  1m0s  100 iters/s
+
+     ✓ status was 200
+
+     checks.........................: 100.00% ✓ 5908      ✗ 0    
+     data_received..................: 4.1 MB  67 kB/s
+     data_sent......................: 851 kB  14 kB/s
+     dropped_iterations.............: 93      1.523619/s
+     http_req_blocked...............: avg=81.46ms  min=5.46ms  med=17.49ms max=1.15s    p(90)=249.09ms p(95)=374.5ms 
+     http_req_connecting............: avg=80.45ms  min=5.4ms   med=17.42ms max=1.15s    p(90)=244.32ms p(95)=365.91ms
+     http_req_duration..............: avg=105.06ms min=15.97ms med=34.52ms max=960.79ms p(90)=289.06ms p(95)=374.26ms
+       { expected_response:true }...: avg=105.06ms min=15.97ms med=34.52ms max=960.79ms p(90)=289.06ms p(95)=374.26ms
+     http_req_failed................: 0.00%   ✓ 0         ✗ 5908 
+     http_req_receiving.............: avg=76.23µs  min=22µs    med=69µs    max=705µs    p(90)=118µs    p(95)=140µs   
+     http_req_sending...............: avg=81.11µs  min=23µs    med=66µs    max=2.61ms   p(90)=117µs    p(95)=137µs   
+     http_req_tls_handshaking.......: avg=0s       min=0s      med=0s      max=0s       p(90)=0s       p(95)=0s      
+     http_req_waiting...............: avg=104.9ms  min=15.85ms med=34.38ms max=960.57ms p(90)=288.8ms  p(95)=374.11ms
+     http_reqs......................: 5908    96.790765/s
+     iteration_duration.............: avg=1.18s    min=1.02s   med=1.05s   max=2.71s    p(90)=1.58s    p(95)=1.71s   
+     iterations.....................: 5908    96.790765/s
+     vus............................: 193     min=100     max=193
+     vus_max........................: 193     min=100     max=193
+
+
+     Sample Data:
+       
